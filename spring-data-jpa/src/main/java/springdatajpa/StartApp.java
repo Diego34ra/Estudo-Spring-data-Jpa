@@ -6,16 +6,25 @@ import org.springframework.stereotype.Component;
 import springdatajpa.model.User;
 import springdatajpa.repository.UserRepository;
 
+import java.util.List;
+
 @Component
 public class StartApp implements CommandLineRunner {
     @Autowired
     private UserRepository repository;
     @Override
     public void run(String... args) throws Exception {
+        List<User> users = repository.filtrarPorNome("Diego");
+        for(User u : users){
+            System.out.println(u);
+        }
+    }
+
+    private void insertUser(){
         User user = new User();
-        user.setName("Diego Ribeiro Araujo");
-        user.setPassword("123456789");
-        user.setUsername("Diego34ra");
+        user.setName("GABRIEL NUNES");
+        user.setUsername("gabriel");
+        user.setPassword("santos");
 
         repository.save(user);
 
